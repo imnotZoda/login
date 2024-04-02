@@ -14,4 +14,7 @@
             <img src="{{ asset('storage/' . $image) }}" alt="Product Image" class="img-thumbnail" style="max-width: 200px;">
         @endforeach
     </div>
+    <div>
+        a
+</div>
 @endsection
