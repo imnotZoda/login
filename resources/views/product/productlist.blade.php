@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.app')
 
 @section('title')
   Product List
@@ -32,7 +32,8 @@
                     <h5 class="card-title">{{ $product->prod_name }}</h5>
                     <p class="card-text">{{ $product->prod_desc }}</p>
                     <p class="card-text">${{ $product->price }}</p>
-                    <a href="#" class="btn btn-primary">Add to Cart</a>
+                    <a href="{{ route('cart.create', ['customer_id' => $customer->id, 'product_id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a>
+
                     <a href="#" class="btn btn-default">More Info</a>
                 </div>
             </div>

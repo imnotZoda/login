@@ -4,8 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Product;
-use App\Models\Inventory;
 use Illuminate\Support\Facades\Storage;
+use App\Models\ProductSupplier;
+use App\Models\Supplier;
 use View;
 
 class ProductController extends Controller
@@ -18,7 +19,8 @@ class ProductController extends Controller
 
     public function create()
     {
-        return view('product.create');
+        $suppliers = Supplier::all();
+        return view('product.create', compact('suppliers'));
     }
 
     public function store(Request $request)
@@ -29,6 +31,9 @@ class ProductController extends Controller
             'type' => 'required|string',
             'price' => 'required|numeric',
             'img.*' => 'required|image|mimes:jpg,bmp,png|max:2048',
+            'supplier_id' => 'required|exists:suppliers,id',
+            'date_supplied' => 'required|date',
+            'prod_price' => 'required|numeric',
         ]);
 
         $product = new Product();
@@ -36,6 +41,16 @@ class ProductController extends Controller
         $product->prod_desc = $request->prod_desc;
         $product->type = $request->type;
         $product->price = $request->price;
+        
+
+        $product->save();
+
+        $productSupplier = new ProductSupplier();
+        $productSupplier->supplier_id = $request->supplier_id;
+        $productSupplier->product_id = $product->id;
+        $productSupplier->date_supplied = $request->date_supplied;
+        $productSupplier->prod_price = $request->prod_price;
+        $productSupplier->save();
 
         $img_paths = [];
         if ($request->hasFile('img')) {
@@ -58,17 +73,38 @@ class ProductController extends Controller
     public function edit($id)
     {
         $product = Product::find($id);
-        return View::make('product.edit', compact('product'));
+        $suppliers = Supplier::all();
+        // Load initial data of date_supplied and prod_price from product_suppliers table
+        $product->load('suppliers');
+        return view('product.edit', compact('product', 'suppliers'));
     }
-
-    public function update(Request $request, $id)
+    
+public function update(Request $request, $id)
 {
     $product = Product::findOrFail($id);
+
+    $request->validate([
+        'prod_name' => 'required|string',
+        'prod_desc' => 'required|string',
+        'type' => 'required|string',
+        'price' => 'required|numeric',
+        'img.*' => 'nullable|image|mimes:jpg,bmp,png|max:2048',
+        'supplier_id' => 'required|exists:suppliers,id',
+        'date_supplied' => 'required|date',
+        'prod_price' => 'required|numeric',
+    ]);
 
     $product->prod_name = $request->prod_name;
     $product->prod_desc = $request->prod_desc;
     $product->type = $request->type;
     $product->price = $request->price;
+
+    // Update product-supplier relationship
+    $productSupplier = ProductSupplier::where('product_id', $id)->first();
+    $productSupplier->supplier_id = $request->supplier_id;
+    $productSupplier->date_supplied = $request->date_supplied;
+    $productSupplier->prod_price = $request->prod_price;
+    $productSupplier->save();
 
     if ($request->hasFile('img')) {
         // Delete existing images before saving new ones
@@ -116,3 +152,4 @@ class ProductController extends Controller
 //     return redirect()->route('product.index')->with('success', 'Product permanently deleted successfully.');
 // }
 }
+

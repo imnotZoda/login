@@ -1,6 +1,8 @@
 <!-- resources/views/supplier/create.blade.php -->
 
 @extends('layouts.app') <!-- Assuming you have a layout file -->
+@extends('supplier.css.suppliercreate')
+
 
 @section('content')
 <div class="container">
@@ -41,9 +43,10 @@
                         <div class="form-group">
                             <label for="img">Images</label>
                             <input type="file" class="form-control-file" id="img" name="img[]" multiple required accept="image/*">
+                            <button type="submit" class="btn btn-primary" id="btn1">Create Supplier</button>
                         </div>
 
-                        <button type="submit" class="btn btn-primary">Create Supplier</button>
+                      
                     </form>
                 </div>
             </div>

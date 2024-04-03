@@ -20,4 +20,9 @@ class Supplier extends Model
     {
         return explode(',', $this->img);
     }
+    public function products()
+    {
+
+        return $this->hasMany(ProductSupplier::class,'product_suppliers', 'product_id', 'supplier_id');
+    }
 }

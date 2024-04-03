@@ -7,6 +7,10 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\SupplierController;
 use App\Http\Controllers\InventoryController;
 use App\Http\Controllers\ProductListController;
+use App\Http\Controllers\CartController;
+use App\Http\Controllers\OrderProductController;
+use App\Http\Controllers\OrderController;
+
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -28,14 +32,14 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/admin/home', [App\Http\Controllers\HomeController::class, 'adminHome'])->name('admin.home')->middleware('is_admin');
 
 
-Route::get('/products', [ProductController::class, 'index'])->name('product.index');
-Route::get('/products/create', [ProductController::class, 'create'])->name('product.create');
-Route::post('/products', [ProductController::class, 'store'])->name('product.store');
-Route::get('/products/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
-Route::post('/products/{id}', [ProductController::class, 'update'])->name('product.update');
-Route::get('/products/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
-Route::delete('/products/{id}', [ProductController::class, 'delete'])->name('product.delete');
-Route::delete('/products/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
+Route::get('/product', [ProductController::class, 'index'])->name('product.index');
+Route::get('/product/create', [ProductController::class, 'create'])->name('product.create');
+Route::post('/product', [ProductController::class, 'store'])->name('product.store');
+Route::get('/product/{id}/edit', [ProductController::class, 'edit'])->name('product.edit');
+Route::post('/product/{id}', [ProductController::class, 'update'])->name('product.update');
+Route::get('/product/{id}/restore', [ProductController::class, 'restore'])->name('product.restore');
+Route::delete('/product/{id}', [ProductController::class, 'delete'])->name('product.delete');
+Route::delete('/product/{id}/destroy', [ProductController::class, 'destroy'])->name('product.destroy');
 
 Route::get('/suppliers', [SupplierController::class, 'index'])->name('supplier.index');
 Route::get('/suppliers/create', [SupplierController::class, 'create'])->name('supplier.create');
@@ -71,4 +75,11 @@ Route::post('/email/verification-notification', function (Request $request) {
  
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
+
+Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// Route::get('/cart/create/{id}', [CartController::class, 'create'])->name('cart.create');
+// Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::get('/cart/create', [CartController::class, 'addToCart'])->name('cart.AddtoCart');
+
 

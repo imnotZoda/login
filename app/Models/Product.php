@@ -23,4 +23,18 @@ class Product extends Model
     {
         return $this->hasMany(Inventory::class, 'product_id', 'id'); // Corrected relationship definition
     }
+    public function orderList()
+    {
+        return $this->belongsToMany(OrderList::class);
+    }
+
+    public function suppliers()
+    {
+        return $this->belongsToMany(Supplier::class, 'product_suppliers', 'product_id', 'supplier_id')
+                    ->withPivot('date_supplied', 'prod_price');
+    }
+    public function carts()
+    {
+        return $this->belongsTo(Cart::class);
+    }
 }
