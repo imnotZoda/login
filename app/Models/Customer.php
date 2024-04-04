@@ -11,10 +11,10 @@ class Customer extends Model
     use HasFactory;
     protected $fillable = [
         'un',
-        'contactmo',
+        'contactno',
         'address',
         'img',
-        'user_id', // Include the foreign key in fillable array if needed
+        'user_id',
     ];
 
     public function user()

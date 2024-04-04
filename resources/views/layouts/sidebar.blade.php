@@ -24,10 +24,17 @@
         <span>Products</span>
         </a>
      
-      <a href="#">
+      <a href="{{ route('admin.updateOrderStatus') }}">
         <i class="far fa-window-maximize"></i>
         <span>Order</span>
       </a>
+
+      <a href="#">
+        <i class="far fa-window-maximize"></i>
+        <span>Inventory</span>
+      </a>
+
+
 
 
       <a class="dropdown-item" href="{{ route('logout') }}"

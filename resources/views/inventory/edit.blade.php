@@ -1,4 +1,4 @@
-<!-- resources/views/inventory/edit.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>

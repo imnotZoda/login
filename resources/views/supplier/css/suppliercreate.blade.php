@@ -32,14 +32,14 @@
 }
 
 .form-group label {
-    /* Adjust label styles as needed */
-    margin-right: 10px; /* Example margin */
+
+    margin-right: 10px; 
 }
 
 .form-group input[type="file"] {
-    /* Adjust input styles as needed */
-    flex: 1; /* Allow the input to grow to fill remaining space */
-    margin-right: 10px; /* Example margin */
+    
+    flex: 1;
+    margin-right: 10px; 
 }
     #btn1{
         position: absolute;
@@ -47,15 +47,15 @@
        margin-right: 20px;
     }
 
-/* Assuming you have a CSS file linked in your HTML document */
+
 
 .card-header {
-    /* Add your CSS styles for the card header here */
-    text-align: center; /* Example: center align the text */
-    font-size: 24px; /* Example: set the font size to 24px */
-    background-color: #f0f0f0; /* Example: change the background color */
-    color: #333; /* Example: change the text color */
-    padding: 10px; /* Example: add padding */
+  
+    text-align: center; 
+    font-size: 24px; 
+    background-color: #f0f0f0
+    color: #333; 
+    padding: 10px; 
 }
 
 </style>

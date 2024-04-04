@@ -17,9 +17,7 @@
   --gradient-color: #FBFBFB;
 }
     .container {
-        /* Remove the max-width property */
-        /* Set margin-right and margin-left to auto to center the container horizontally */
-      
+       
         margin-left: 150px;
         float: right;
         background-color: #fff;
@@ -38,7 +36,7 @@
         border-radius: 3px;
         box-shadow: 0 1px 1px rgba(0, 0, 0, .05);
         margin-top: -385px;
-       /* Position at the right side */
+     
         width: 87%;
         margin-left: -150px;
         position: absolute;

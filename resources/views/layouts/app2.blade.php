@@ -3,17 +3,20 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  
     <meta name="csrf-token" content="{{ csrf_token() }}">
+
     <title>{{ config('app.name', 'heyy') }}</title>
 
-   
+
     <link rel="dns-prefetch" href="//fonts.bunny.net">
     <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet">
 
-   
+
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
 
-    
+ 
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
 </head>
 <body>
@@ -33,15 +36,15 @@
 
                     </ul>
 
-                    
+                 
                     <ul class="navbar-nav ms-auto">
                         
-                   
+                        
                         <li class="nav-item">
                             <a class="nav-link" href="{{ route('cart.index') }}">Cart</a>
                         </li>
                         
-                     
+
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
@@ -68,7 +71,7 @@
                                         {{ __('Logout') }}
                                     </a>
 
-                                           
+                                          
                                     <a class="dropdown-item" href="{{ route('customer.edit', Auth::user()->customer->id) }}">
                                                     Edit Profile
                                     </a>
@@ -81,7 +84,6 @@
 
                                
     
-   
 </div>
                             </li>
                         @endguest
@@ -95,7 +97,7 @@
         </main>
     </div>
 
-    
+
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 </html>

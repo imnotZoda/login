@@ -13,9 +13,7 @@ class Supplier extends Model
 
     protected $fillable = ['name', 'email', 'contactno', 'img'];
 
-    /**
-     * Get the images for the supplier.
-     */
+
     public function images()
     {
         return explode(',', $this->img);

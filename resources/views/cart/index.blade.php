@@ -1,4 +1,5 @@
-<!-- resources/views/cart/index.blade.php -->
+
+@extends('cart\css\cartindexcss')
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,7 +19,7 @@
                     <th>Product</th>
                     <th>Quantity</th>
                     <th>Price</th>
-                    <th>Total</th> <!-- New column for total -->
+                    <th>Total</th> 
                 </tr>
             </thead>
             <tbody>
@@ -26,15 +27,15 @@
                 <tr>
                     <td>{{ $cart->product->prod_name }}</td>
                     <td>
-                        <input type="number" class="qty-input" value="{{ $cart->qty }}" data-product-id="{{ $cart->product->id }}">
+                     <input type="number" class="qty-input" value="{{ $cart->qty }}" data-product-id="{{ $cart->product->id }}" min="1">
                     </td>
                     <td>{{ $cart->product->price }}</td>
-                    <td>{{ $cart->qty * $cart->product->price }}</td> <!-- Calculate total -->
+                    <td>{{ $cart->qty * $cart->product->price }}</td> 
                 </tr>
                 @endforeach
             </tbody>
         </table>
-        <p>Grand Total: <span id="grandTotal">{{ $carts->sum(function ($cart) { return $cart->qty * $cart->product->price; }) }}</span></p> <!-- Calculate grand total -->
+        <p>Grand Total: <span id="grandTotal">{{ $carts->sum(function ($cart) { return $cart->qty * $cart->product->price; }) }}</span></p>
         <button type="button" onclick="prepareCheckout()">Checkout</button>
     </form>
 
@@ -79,3 +80,7 @@
     </script>
 </body>
 </html>
+
+
+
+

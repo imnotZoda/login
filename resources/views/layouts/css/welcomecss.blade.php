@@ -182,9 +182,9 @@ nav ul a:hover:after{
     width: 500px;
     height: 500px;
     position: absolute;
-    top: -120px; /* Adjust the top position as needed */
-    right: 50px; /* Adjust the left position as needed */
-    z-index: 999; /* Ensure the logo appears above other elements */
+    top: -120px; 
+    right: 50px; 
+    z-index: 999;
 }
 
 </style>

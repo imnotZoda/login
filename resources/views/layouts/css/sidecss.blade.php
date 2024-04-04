@@ -3,6 +3,7 @@
             margin: 0;
             padding: 0;
             text-decoration: none;
+            z-index: 999;
         }
 
         :root {
@@ -63,7 +64,7 @@
         .sidebar a:last-child {
     position: absolute;
     bottom: 0;
-    width: 100%; /* Ensures the link takes the full width */
+    width: 100%; 
 }
 
         .sidebar a span {

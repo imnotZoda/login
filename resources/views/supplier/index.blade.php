@@ -11,7 +11,7 @@
 <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
 <div class="container mx-auto mt-8" id="container">
-    <!-- Artworks Table -->
+
     <table id="artworkTable" class="table table-striped table-bordered">
     <div class="table-title">
                 <div class="row">
@@ -31,7 +31,7 @@
                 <th>Email</th>
                 <th>Contact Number</th>
                 <th>Image</th>
-                <th>Actions</th> <!-- Added column for CRUD actions -->
+                <th>Actions</th> 
             </tr>
         </thead>
         <tbody>
@@ -75,7 +75,7 @@
         </tbody>
     </table>
 
-    <!-- Add Artwork Button -->
+   
     <a href="{{ route('supplier.create') }}" class="btn btn-primary mt-4"><i class="fas fa-plus"></i> Add Supplier</a>
 </div>
 

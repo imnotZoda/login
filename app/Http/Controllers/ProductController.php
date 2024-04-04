@@ -74,7 +74,6 @@ class ProductController extends Controller
     {
         $product = Product::find($id);
         $suppliers = Supplier::all();
-        // Load initial data of date_supplied and prod_price from product_suppliers table
         $product->load('suppliers');
         return view('product.edit', compact('product', 'suppliers'));
     }
@@ -99,7 +98,6 @@ public function update(Request $request, $id)
     $product->type = $request->type;
     $product->price = $request->price;
 
-    // Update product-supplier relationship
     $productSupplier = ProductSupplier::where('product_id', $id)->first();
     $productSupplier->supplier_id = $request->supplier_id;
     $productSupplier->date_supplied = $request->date_supplied;
@@ -107,7 +105,6 @@ public function update(Request $request, $id)
     $productSupplier->save();
 
     if ($request->hasFile('img')) {
-        // Delete existing images before saving new ones
         $existingImages = explode(',', $product->img);
         foreach ($existingImages as $existingImage) {
             Storage::delete(str_replace('storage/', 'public/', $existingImage));
@@ -142,7 +139,7 @@ public function update(Request $request, $id)
     public function destroy($id)
 {
     $product = Product::findOrFail($id);
-    $product->delete(); // This will permanently delete the product
+    $product->delete();
     return redirect()->route('product.index')->with('success', 'Product permanently deleted successfully.');
 }
 // public function destroy($id)

@@ -1,4 +1,4 @@
-<!-- resources/views/inventory/create.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -13,7 +13,7 @@
         <label for="product_id">Product:</label>
         <select name="product_id" id="product_id" required>
             @foreach($products as $product)
-                @if (!$product->inventory->count()) <!-- Check if product has no inventory -->
+                @if (!$product->inventory->count()) 
                     <option value="{{ $product->id }}">{{ $product->prod_name }}</option>
                 @endif
             @endforeach

@@ -15,10 +15,6 @@ class Orderlist extends Model
         'order_date'
     ];
 
-    // public function orderItems()
-    // {
-    //     return $this->hasMany(OrderItem::class);
-    // }
     
     public function customers()
     {

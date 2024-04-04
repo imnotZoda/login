@@ -1,6 +1,6 @@
-<!-- resources/views/supplier/create.blade.php -->
 
-@extends('layouts.app') <!-- Assuming you have a layout file -->
+
+@extends('layouts.app')
 @extends('supplier.css.suppliercreate')
 
 

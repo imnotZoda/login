@@ -114,8 +114,8 @@ integrity="sha384-DyZ88mC6Up2uqS4h/KRgHuoeGwBcD4Ng9SiP4dIRy0EXTlnuz47vAwmeGwVChi
         spaceBetween: 30,
         loop: true,
         autoplay: {
-            delay: 5000, // Adjust the delay as needed (in milliseconds)
-            disableOnInteraction: false, // Allows interaction (like clicking on slides) to stop autoplay
+            delay: 5000, 
+            disableOnInteraction: false, 
         },
     });
 </script>

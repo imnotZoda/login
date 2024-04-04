@@ -68,7 +68,7 @@ class SupplierController extends Controller
     $supplier->contactno = $request->contactno;
 
     if ($request->hasFile('img')) {
-        // Delete existing images before saving new ones
+    
         $existingImages = explode(',', $supplier->img);
         foreach ($existingImages as $existingImage) {
             Storage::delete(str_replace('storage/', 'public/', $existingImage));
@@ -103,7 +103,7 @@ class SupplierController extends Controller
     public function destroy($id)
 {
     $supplier = Supplier::findOrFail($id);
-    $supplier->delete(); // This will permanently delete the supplier
+    $supplier->delete();
     return redirect()->route('supplier.index')->with('success', 'Supplier permanently deleted successfully.');
 }
 // public function destroy($id)

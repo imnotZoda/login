@@ -1,11 +1,11 @@
-<!-- resources/views/inventory/index.blade.php -->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inventory List</title>
-    <!-- Include DataTables CSS -->
+
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.css">
 </head>
 <body>
@@ -36,14 +36,12 @@
             @endforeach
         </tbody>
     </table>
-    <!-- Add Artwork Button -->
+
     <a href="{{ route('inventory.create') }}" class="btn btn-primary mt-4"><i class="fas fa-plus"></i> Add Inventory</a>
     </div>
-    <!-- Include jQuery -->
+  
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-    <!-- Include DataTables JS -->
     <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.js"></script>
-    <!-- DataTables Initialization -->
     <script>
         $(document).ready(function() {
             $('#inventoryTable').DataTable();

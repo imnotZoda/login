@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\SoftDeletes; // Don't forget to import SoftDeletes
+use Illuminate\Database\Eloquent\SoftDeletes; 
 use App\Models\Product;
 
 class Inventory extends Model
@@ -17,8 +17,8 @@ class Inventory extends Model
         'stock'
     ];
 
-    public function product() // Method name should be 'belongsTo' instead of 'BelongsTo'
+    public function product() 
     {
-        return $this->belongsTo(Product::class); // Corrected method name
+        return $this->belongsTo(Product::class);
     }
 }

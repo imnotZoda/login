@@ -21,10 +21,10 @@
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
-    <!-- DataTables CSS -->
+  
     <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.11.5/css/jquery.dataTables.min.css">
 
-    <!-- Bootstrap CSS -->
+    
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <script>
@@ -39,11 +39,9 @@
 
 
     
-    <!-- jQuery -->
-
 
     <div class="container mx-auto mt-8">
-        <!-- Artworks Table -->
+       
         <div class="table-wrapper">
             <div class="table-title">
                 <div class="row">
@@ -65,7 +63,7 @@
                         <th>Price</th>
                         <th>Supplier</th>
                         <th>Image</th>
-                        <th>Actions</th> <!-- Added column for CRUD actions -->
+                        <th>Actions</th> 
                         <th>Edit</th>
                         <th>Delete/Restore</th>
                     </tr>
@@ -135,7 +133,7 @@
 
     </div>
 
-    <!-- Bootstrap JS -->
+ 
 
     <div class="frame">
 
@@ -146,10 +144,9 @@
 
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
 
-<!-- DataTables JS -->
+
 <script src="https://cdn.datatables.net/1.11.5/js/jquery.dataTables.min.js"></script>
 
-<!-- Initialize DataTables -->
 <script>
     $(document).ready(function() {
         $('#artworkTable').DataTable();

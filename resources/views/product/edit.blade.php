@@ -1,4 +1,3 @@
-<!-- resources/views/products/edit.blade.php -->
 
 @extends('layouts.app')
 
@@ -44,7 +43,7 @@
                             <input type="number" class="form-control" id="price" name="price" step="0.01" value="{{ $product->price }}" required>
                         </div>
 
-                           <!-- Supplier selection -->
+                       
                            <div class="form-group">
                             <label for="supplier_id">Supplier</label>
                             <select class="form-control" id="supplier_id" name="supplier_id" required>
@@ -55,7 +54,7 @@
                             </select>
                         </div>
 
-                        <!-- Additional fields from product_suppliers table -->
+                      
                         <div class="form-group">
                             <label for="date_supplied">Date Supplied</label>
                             <input type="date" class="form-control" id="date_supplied" name="date_supplied" value="{{ $product->suppliers->first()->pivot->date_supplied }}" required>

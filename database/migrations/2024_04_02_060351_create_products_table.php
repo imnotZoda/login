@@ -20,7 +20,7 @@ class CreateProductsTable extends Migration
             $table->string('type');
             $table->decimal('price', 8, 2);
             $table->string('img')->nullable();
-            $table->softDeletes(); // Adds soft delete functionality
+            $table->softDeletes(); 
             $table->timestamps();
         });
     }

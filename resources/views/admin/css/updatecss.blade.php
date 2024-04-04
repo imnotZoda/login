@@ -18,10 +18,8 @@
 }
     .container {
         
-        margin-right: 0px;
-        margin-left: 0px;
-        float: right;
-  
+        width: 200%;
+        
 
     }
     .table-responsive {
@@ -210,6 +208,6 @@
     margin: 0; 
     font-size: 18px; 
     color: #333; 
-    text-align: right;
+    text-align: right; 
 }
 </style>
