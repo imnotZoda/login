@@ -27,4 +27,38 @@ class CustomerController extends Controller
             'img' => $request->input('img') ?? null, // Assuming img is nullable
         ]);
     }
+
+    protected function edit(Request $request, $id)
+    {
+        $customer = Customer::findOrFail($id);
+        
+        // Check if the authenticated user is authorized to edit this customer's profile
+        if (Auth::id() !== $customer->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Populate customer data to the view for editing
+        return view('customer.edit', compact('customer'));
+    }
+
+    protected function update(Request $request, $id)
+    {
+        $customer = Customer::findOrFail($id);
+        
+        // Check if the authenticated user is authorized to update this customer's profile
+        if (Auth::id() !== $customer->user_id) {
+            abort(403, 'Unauthorized action.');
+        }
+
+        // Update customer data
+        $customer->update([
+            'un' => $request->input('username'),
+            'contactno' => $request->input('contactno'),
+            'address' => $request->input('address'),
+            'img' => $request->input('img') ?? null,
+        ]);
+
+        // Redirect back with success message or to a different route
+        return redirect()->back()->with('success', 'Profile updated successfully.');
+    }
 }

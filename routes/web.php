@@ -10,6 +10,8 @@ use App\Http\Controllers\ProductListController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\OrderProductController;
 use App\Http\Controllers\OrderController;
+use App\Http\Controllers\CustomerController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -57,6 +59,10 @@ Route::get('/inventory/{id}/edit', [InventoryController::class, 'edit'])->name('
 Route::put('/inventory/{id}/update', [InventoryController::class, 'update'])->name('inventory.update');
 Route::get('/inventory/{id}/restore', [InventoryController::class, 'restore'])->name('inventory.restore');
 
+
+// Route for showing the edit form
+Route::get('/customer/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
+Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('customer.update');
 // Route::get('/productlist', [ProductListController::class, 'productlist'])->name('productlist');
 
 Route::get('product/productlist', [ProductListController::class, 'ProductList'])->name('product.productlist');

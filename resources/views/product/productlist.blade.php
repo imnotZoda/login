@@ -31,9 +31,10 @@
                 <div class="card-body">
                     <h5 class="card-title">{{ $product->prod_name }}</h5>
                     <p class="card-text">{{ $product->prod_desc }}</p>
-                    <p class="card-text">${{ $product->price }}</p>
-                    <a href="{{ route('cart.create', ['customer_id' => $customer->id, 'product_id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a>
-
+                    <p class="card-text">Stock: {{ $product->inventory->stock }}</p>
+                    <p class="card-text">Price: ${{ $product->price }}</p>
+                    <a href="{{ route('cart.add', ['product_id' => $product->id, 'quantity' => 1]) }}" class="btn btn-primary">Add to Cart</a>
+                    <a href="{{ route('cart.add', ['product_id' => $product->id, 'quantity' => -1]) }}" class="btn btn-secondary">Remove from Cart</a>
                     <a href="#" class="btn btn-default">More Info</a>
                 </div>
             </div>

@@ -19,6 +19,7 @@ class Orderlist extends Model
     // {
     //     return $this->hasMany(OrderItem::class);
     // }
+    
     public function customers()
     {
         return $this->belongsTo(Customer::class);
