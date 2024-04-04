@@ -63,6 +63,7 @@ Route::get('/inventory/{id}/restore', [InventoryController::class, 'restore'])->
 // Route for showing the edit form
 Route::get('/customer/{id}/edit', [CustomerController::class, 'edit'])->name('customer.edit');
 Route::put('/customer/{id}', [CustomerController::class, 'update'])->name('customer.update');
+
 // Route::get('/productlist', [ProductListController::class, 'productlist'])->name('productlist');
 
 Route::get('product/productlist', [ProductListController::class, 'ProductList'])->name('product.productlist');
@@ -82,10 +83,14 @@ Route::post('/email/verification-notification', function (Request $request) {
     return back()->with('message', 'Verification link sent!');
 })->middleware(['auth', 'throttle:6,1'])->name('verification.send');
 
+// Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
+// // Route::get('/cart/create/{id}', [CartController::class, 'create'])->name('cart.create');
+// // Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
+// Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+// Route::get('/cart/{product_id}/', [CartController::class, 'addToCart'])->name('cart.AddtoCart');
+
+
+Route::post('/checkout', [CartController::class, 'checkout'])->name('checkout');
 Route::get('/cart', [CartController::class, 'index'])->name('cart.index');
-// Route::get('/cart/create/{id}', [CartController::class, 'create'])->name('cart.create');
-// Route::post('/cart', [CartController::class, 'store'])->name('cart.store');
-Route::post('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
-Route::get('/cart/create', [CartController::class, 'addToCart'])->name('cart.AddtoCart');
-
-
+// Route::get('/cart/checkout', [CartController::class, 'checkout'])->name('cart.checkout');
+Route::get('/cart/add/{product_id}', [CartController::class, 'addcart'])->name('cart.AddtoCart');

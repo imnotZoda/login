@@ -75,6 +75,15 @@
                                         @csrf
                                     </form>
                                 </div>
+                                <div class="dropdown-divider"></div>
+
+                                        <!-- Add a dropdown item for editing profile -->
+                                <a class="dropdown-item" href="{{ route('customer.edit', Auth::user()->customer->id) }}">
+                                                    Edit Profile
+                                    </a>
+    
+    <!-- Close the dropdown menu -->
+</div>
                             </li>
                         @endguest
                     </ul>

@@ -12,6 +12,7 @@ use Illuminate\Support\Facades\Auth;
 use DB;
 use App\Models\Inventory;
 
+
 class CartController extends Controller
 {
     public function index()
@@ -26,7 +27,7 @@ class CartController extends Controller
         return view('cart.index', compact('carts'));
     }
 
-    public function addToCart($product_id)
+    public function addcart($product_id)
     {
         $user = auth()->user();
 
@@ -43,7 +44,7 @@ class CartController extends Controller
             ->first();
 
         if ($existingCartItem) {
-            $existingCartItem->update(['qty' => $existingCartItem->cart_qty + 1]);
+            $existingCartItem->update(['qty' => $existingCartItem->qty + 1]);
         } else {
             $cartItem = Cart::create([
                 'customer_id' => $customer->id,
@@ -51,7 +52,7 @@ class CartController extends Controller
                 'qty' => 1,
             ]);
         }
-        return redirect()->route('customer.index');
+        return redirect()->route('home');
     }
 
 //     public function create(Request $request)
@@ -181,48 +182,111 @@ class CartController extends Controller
 //     return response()->json(['message' => 'Checkout successful'], 200);
 // }
 
-    public function checkout(Request $request)
-    {
-        $user = Auth::user();
-        $customerId = $user->customer->id;
+// public function checkout(Request $request)
+// {
 
-        try {
-            DB::beginTransaction();
+//     $customerId = Auth::user()->customer->id ;
+//     // $customerId = $request->input('customer_id');
 
-            $cartItems = Cart::where('customer_id', $customerId)->get();
+//     try {
+//         DB::beginTransaction();
 
-            $order = OrderList::create([
-                'customer_id' => $customerId,
-                'status' => 'Processing',
-                'order_date' => now(),
+//         // Create order
+//         $order = OrderList::create([
+//             'customer_id' => $customerId,
+//             'status' => 'Processing',
+//             'order_date' => now(),
+//         ]);
+
+//         // Fetch cart items
+//         $cartItems = Cart::where('customer_id', $customerId)->get();
+
+//         foreach ($cartItems as $cartItem) {
+//             // Create order products
+//             OrderProduct::create([
+//                 'orderlist_id' => $order->id,
+//                 'product_id' => $cartItem->product_id,
+//                 'qty' => $cartItem->qty,
+//             ]);
+
+//             // Update inventory
+//             $inventory = Inventory::where('product_id', $cartItem->product_id)->firstOrFail();
+//             $inventory->stock -= $cartItem->qty;
+//             $inventory->save();
+//         }
+
+//         // Clear cart
+//         Cart::where('customer_id', $customerId)->delete();
+
+//         DB::commit();
+//         return redirect()->route('cart.index')->with('success', 'Placed order successfully');
+//     } catch (Exception $e) {
+//         DB::rollback();
+//         return redirect()->route('cart.index')->with('error', 'Failed to complete the checkout.');
+//     }
+// }
+
+
+// public function checkout(Request $request)
+// {
+//     $customerId = Auth::user()->customer->id;
+
+//     try {
+//         DB::beginTransaction();
+
+//         // Create order
+//         $order = OrderList::create([
+//             'customer_id' => $customerId,
+//             'status' => 'Processing',
+//             'order_date' => now(),
+//         ]);
+
+//         // Clear cart
+//         Cart::where('customer_id', $customerId)->delete();
+
+//         DB::commit();
+//         return redirect()->route('cart.index')->with('success', 'Placed order successfully');
+//     } catch (Exception $e) {
+//         DB::rollback();
+//         return redirect()->route('cart.index')->with('error', 'Failed to complete the checkout.');
+//     }
+// }
+
+public function checkout(Request $request)
+{
+    $customerId = Auth::user()->customer->id;
+
+    try {
+        DB::beginTransaction();
+
+        // Create order
+        $order = OrderList::create([
+            'customer_id' => $customerId,
+            'status' => 'Processing',
+            'order_date' => now(),
+        ]);
+
+        // Fetch cart items
+        $cartItems = Cart::where('customer_id', $customerId)->get();
+
+        // Iterate over cart items and create order products
+        foreach ($cartItems as $cartItem) {
+            OrderProduct::create([
+                'orderlist_id' => $order->id,
+                'product_id' => $cartItem->product_id,
+                'qty' => $cartItem->qty,
             ]);
-
-            $orderproducts = '';
-
-            foreach ($cartItems as $cartItem) {
-                $productId = $cartItem->product_id;
-                $quantity = $cartItem->qty;
-
-                $orderproducts .= "($order->id, $productId, $quantity),";
-
-                $inventory = Inventory::where('product_id', $productId)->firstOrFail();
-                $inventory->stock -= $quantity;
-                $inventory->save();
-            }
-
-            $orderproducts = rtrim($orderproducts, ',');
-
-            if (!empty($orderproducts)) {
-                $sql = "INSERT INTO order_products (orderlist_id, product_id, qty) VALUES $orderproducts";
-                DB::statement($sql);
-            }
-
-            Cart::where('customer_id', $customerId)->delete();
-            DB::commit();
-            return redirect()->route('cart.index')->with('success', 'Placed order successfully');
-        } catch (Exception $e) {
-            DB::rollback();
-            return redirect()->route('checkout')->with('error', 'Failed to complete the checkout.');
         }
+
+        // Clear cart
+        Cart::where('customer_id', $customerId)->delete();
+
+        DB::commit();
+        return redirect()->route('cart.index')->with('success', 'Placed order successfully');
+    } catch (Exception $e) {
+        DB::rollback();
+        return redirect()->route('cart.index')->with('error', 'Failed to complete the checkout.');
     }
+}
+
 }

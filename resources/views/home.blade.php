@@ -1,5 +1,6 @@
-@extends('layouts.app')
 
+
+@extends('layouts.app')
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
@@ -28,7 +29,7 @@
 
 @if(Session::has('message'))
 <div class="alert alert-danger alert-dismissible show" role="alert">
-  <strong>{{Session::get('message')}}</strong> 
+  <strong>{{Session::get('message')}}</strong>
   <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button>
@@ -51,7 +52,7 @@
                  <h5 class="card-title"> <strong>{{ $product->prod_name }}</strong></h5>
                     <p class="card-text" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap;">{{ $product->prod_desc }}</p>
                     <p class="card-text" >${{ $product->price }}</p>
-                    <a href="{{ route('cart.AddtoCart', ['id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a>
+                    <a href="{{ route('cart.AddtoCart', ['product_id' => $product->id]) }}" class="btn btn-primary">Add to Cart</a>
 
                     <a href="#" class="btn btn-default">More Info</a>
                 </div>
