@@ -1,4 +1,7 @@
 
+@extends('inventory\css\inventorycss')
+@extends('layouts.sidebar')
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,8 +13,9 @@
 </head>
 <body>
     <h1>Inventory List</h1>
+    <div class="table-wrapper">
     <table id="inventoryTable">
-        <thead>
+        <thead class="table-title">
             <tr>
                 <th>Product Name</th>
                 <th>Stock</th>

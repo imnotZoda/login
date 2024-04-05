@@ -29,7 +29,7 @@
         <span>Order</span>
       </a>
 
-      <a href="#">
+      <a href="{{route('inventory.index')}}">
         <i class="far fa-window-maximize"></i>
         <span>Inventory</span>
       </a>

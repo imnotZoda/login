@@ -1,4 +1,4 @@
-
+@extends('inventory\css\editcss')
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -7,6 +7,7 @@
     <title>Edit Inventory</title>
 </head>
 <body>
+    <div class="container">
     <h1>Edit Inventory</h1>
     <form action="{{ route('inventory.update', $inventory->id) }}" method="POST" enctype="multipart/form-data">
         @csrf
@@ -17,7 +18,8 @@
         <label for="stock">Stock:</label>
         <input type="text" name="stock" id="stock" value="{{ $inventory->stock }}" required>
         <br>
-        <button type="submit">Update Inventory</button>
+        <button type="submit" class="edit-button">Update Inventory</button>
     </form>
+</div>
 </body>
 </html>
